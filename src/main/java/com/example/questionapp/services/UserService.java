@@ -77,4 +77,17 @@ public class UserService {
         results.addAll(likes);
         return results;
     }
+
+    public List<Object> getAllUserActivity() {
+        List<Long> postIds = postRepository.findTopPostIds();
+        if(postIds == null || postIds.isEmpty()){
+            return new ArrayList<>();
+        }
+        List<Object> comments = commentRepository.findUserCommentsByPostId(postIds);
+        List<Object> likes = likeRepository.findUserLikesByPostId(postIds);
+        List<Object> results = new ArrayList<>();
+        results.addAll(comments);
+        results.addAll(likes);
+        return results;
+    }
 }
