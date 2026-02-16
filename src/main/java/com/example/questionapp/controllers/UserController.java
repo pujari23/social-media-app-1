@@ -55,6 +55,11 @@ public class UserController {
         return userService.getUserActivityById(userId);
     }
 
+    @GetMapping("/activity")
+    public List<Object> getAllUserActivity(){
+        return userService.getAllUserActivity();
+    }
+
     /*@ResponseBody*/
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
